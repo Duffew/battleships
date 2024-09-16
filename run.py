@@ -6,12 +6,12 @@
 COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 ROWS = range(1, 9)
 
-def generate_grid():
+def welcome():
     print("\nWelcome to Battleships!\n")
     # while loop runs until player provides a valid input
     while True:
         # provides player input field and converts text to lowercase to match the checks below
-        game = input("Would you like to play a game? ('y'/'n')").lower()
+        game = input("Would you like to play a game? ('y'/'n'): ").lower()
         if game == "n":
             print("Maybe another time. Goodbye!")
             quit()
@@ -22,6 +22,7 @@ def generate_grid():
             print("That is not a valid input. Please try again.")
             continue
 
+def generate_grid():
     # print the column headers A - H
     print("   " + "  ".join(COLUMNS)) 
     # print each row beginning with row numbers
@@ -30,4 +31,5 @@ def generate_grid():
         grid = print(f"{row}  " + "  ".join(["."] * len(COLUMNS)))
     return grid
 
+welcome()
 generate_grid()

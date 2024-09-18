@@ -40,6 +40,23 @@ class GameBoard:
             # print row number and rows of "."
             print(f"{i} " + " ".join(row))
 
+def what_size():
+    """
+    generate a game board based upon the player's choice
+    """
+    while True:
+        # define the board_size variable
+        board_size = input("What size board would you like to use?\nPlease choose a nuumber between 5 and 10: ")
+        # check that the input is a digit
+        if board_size.isdigit():
+            # if True, convert the string to an integer
+            board_size = int(board_size)
+            # check that the integer is within range
+            if 5 <= board_size <= 1:
+                print("\nOkay, here is your board!")
+                # store board_size value for later use
+                return board_size
+
 
 welcome()
 game = GameBoard(5)

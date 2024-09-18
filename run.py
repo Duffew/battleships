@@ -52,7 +52,7 @@ def what_size():
             # if True, convert the string to an integer
             board_size = int(board_size)
             # check that the integer is within range
-            if 5 <= board_size <= 1:
+            if 5 <= board_size <= 10:
                 print("\nOkay, here is your board!")
                 # store board_size value for later use
                 return board_size
@@ -61,10 +61,12 @@ def what_size():
                 print("\nThe number must be between 5 and 10. Please try again.\n")
         else:
             # if the input is not a digit
-            print("\nThat is not a number. Please try again.\n")2
+            print("\nThat is not a number. Please try again.\n")
 
+def main():
+    board_size = what_size()
+    game = GameBoard(board_size)
+    game.print_board()
 
 welcome()
-board_size = what_size()
-game = GameBoard(board_size)
-game.print_board()
+main()

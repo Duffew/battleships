@@ -22,14 +22,27 @@ def welcome():
             print("That is not a valid input. Please try again.")
             continue
 
-def generate_grid():
-    # print the column headers A - H
-    print("   " + "  ".join(COLUMNS)) 
-    # print each row beginning with row numbers
-    for row in ROWS: 
-        # print the row number and '.' for each column in the row
-        grid = print(f"{row}  " + "  ".join(["."] * len(COLUMNS)))
-    return grid
+class GameBoard:
+    
+    def __init__(self,size):
+        """
+        Initialise the GameBoard class
+        """
+        # define the GameBoard attributes
+        self.size = size
+        self.board = [["." for x in range(size)] for y in range(size)]
+
+    def print_board(self):
+        """
+        Print the GameBoard
+        """
+        # print column headers A - ? - use list comprehension to iterate
+        print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
+        for i, row in enumerate(self.board):
+            # print row number and rows of "."
+            print(f"{i} " + " ".join(row))
+
 
 welcome()
-generate_grid()
+game = GameBoard(5)
+game.print_board()

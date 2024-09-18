@@ -3,8 +3,6 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 # define constants
-COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-ROWS = range(1, 9)
 
 def welcome():
     print("\nWelcome to Battleships!\n")

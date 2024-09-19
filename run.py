@@ -44,7 +44,7 @@ class GameBoard:
 
         #itertae ship placement using "S" to represent ships
         for x, y in ship_positions:
-            self.board[x][x] = "S"
+            self.board[x][y] = "S"
 
     def print_board(self):
         """

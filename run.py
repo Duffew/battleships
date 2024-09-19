@@ -2,19 +2,19 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
-# define constants
+import random # python module for generating random integers
 
 def welcome():
     print("\nWelcome to Battleships!\n")
     # while loop runs until player provides a valid input
     while True:
         # provides player input field and converts text to lowercase to match the checks below
-        game = input("Would you like to play a game? ('y'/'n'): ").lower()
+        game = input("Would you like to play a game? (y/n): ").lower()
         if game == "n":
             print("Maybe another time. Goodbye!")
             quit()
         if game == "y":
-            print("\nLet's play\n")
+            print("\nLet's play!\n")
             break
         else:
             print("That is not a valid input. Please try again.")
@@ -31,6 +31,7 @@ class GameBoard:
         self.board = [["." for x in range(size)] for y in range(size)]
         self.total_cells = size * size
         self.num_ships = (self.total_cells * 20) // 100 # ships are 20% of the total cells on the board
+        self.place_random_ships() # method to randomly place the ships on the board
 
     def place_random_ships(self):
         """
@@ -68,7 +69,7 @@ def what_size():
             board_size = int(board_size)
             # check that the integer is within range
             if 5 <= board_size <= 10:
-                print("\nOkay, here is your board!")
+                print("\nOkay, here is your board!\n")
                 # store board_size value for later use
                 return board_size
             else:

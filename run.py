@@ -29,6 +29,8 @@ class GameBoard:
         # define the GameBoard attributes
         self.size = size
         self.board = [["." for x in range(size)] for y in range(size)]
+        self.total_cells = size * size
+        self.num_ships = (self.total_cells * 20) // 100 # ships are 20% of the total cells on the board
 
     def print_board(self):
         """

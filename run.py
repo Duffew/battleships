@@ -62,13 +62,13 @@ def what_size():
     """
     while True:
         # define the board_size variable
-        board_size = input("What size board would you like to use?\nPlease choose a nuumber between 5 and 10: ")
+        board_size = input("What size board would you like to use?\nPlease choose a nuumber between 4 and 8: ")
         # check that the input is a digit
         if board_size.isdigit():
             # if True, convert the string to an integer
             board_size = int(board_size)
             # check that the integer is within range
-            if 5 <= board_size <= 10:
+            if 4 <= board_size <= 8:
                 print("\nOkay, here is your board!\n")
                 # store board_size value for later use
                 return board_size

@@ -32,6 +32,19 @@ class GameBoard:
         self.total_cells = size * size
         self.num_ships = (self.total_cells * 20) // 100 # ships are 20% of the total cells on the board
 
+    def place_random_ships(self):
+        """
+        place ships randomly on the board
+        """
+        #create a list of all possible coordinates
+        all_coordinates = [(x, y) for x in range(self.size) for y in range(self.size)]
+        # randomly choose ship positions from the all_coordinates list
+        ship_positions = random.sample(all_coordinates, self.num_ships)
+
+        #itertae ship placement using "S" to represent ships
+        for x, y in ship_positions:
+            self.board[x][x] = "S"
+
     def print_board(self):
         """
         Print the GameBoard

@@ -54,7 +54,7 @@ class GameBoard:
         print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
         for i, row in enumerate(self.board):
             # print row number and rows of "."
-            print(f"{i} " + " ".join(row))
+            print(f"{i + 1} " + " ".join(row))
 
 def what_size():
     """

@@ -61,23 +61,27 @@ def what_size():
     generate a game board based upon the player's choice
     """
     while True:
-        # define the board_size variable
-        board_size = input("What size board would you like to use?\nPlease choose a nuumber between 4 and 8: ")
-        # check that the input is a digit
-        if board_size.isdigit():
-            # if True, convert the string to an integer
+        # use 'try' and 'except' statements to catch non-numeric and out of range inputs
+        try:
+            # player inputs the desired board size
+            board_size = input("What size board would you like to use?\nPlease choose a number between 4 and 8: ")
+
+            # attempt to convert the input into an integer
             board_size = int(board_size)
-            # check that the integer is within range
+
+            # check that the integer is within the correct range
             if 4 <= board_size <= 8:
                 print("\nOkay, here is your board!\n")
+
                 # store board_size value for later use
                 return board_size
             else:
                 # if the input is a digit but the integer is out of range
-                print("\nThe number must be between 5 and 10. Please try again.\n")
-        else:
-            # if the input is not a digit
-            print("\nThat is not a number. Please try again.\n")
+                raise ValueError("\nThe number must be between 5 and 10.\n")
+        
+        except ValueError as e:
+            # assign ValueError to an 'e' variable and catch both non-numeric and range errors
+            print(f"\nInvalid input: {e} \nPlease try again.\n")
 
 def main():
     board_size = what_size()

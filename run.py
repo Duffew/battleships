@@ -37,12 +37,12 @@ class GameBoard:
         """
         place ships randomly on the board
         """
-        #create a list of all possible coordinates
+        # create a list of all possible coordinates
         all_coordinates = [(x, y) for x in range(self.size) for y in range(self.size)]
         # randomly choose ship positions from the all_coordinates list
         ship_positions = random.sample(all_coordinates, self.num_ships)
 
-        #itertae ship placement using "S" to represent ships
+        # itertae ship placement using "S" to represent ships
         for x, y in ship_positions:
             self.board[x][y] = "S"
 
@@ -55,6 +55,38 @@ class GameBoard:
         for i, row in enumerate(self.board):
             # print row number and rows of "."
             print(f"{i + 1} " + " ".join(row))
+
+# create a new class for the computer's game board, which inherits attributes
+# from the GameBoard class and adds new attributes e.g. hidden from player
+class ComputerBoard(GameBoard):
+    def __init__(self, size):
+        """
+        initialise the ComputerBoard class
+        """
+        # inherit attributes from the GameBoard class
+        super().__init__(size)
+        # new attribute - store the computer's board as a hidden version
+        self.hidden_board = [["." for _ in range(size) for _ in range(size)]]
+
+    def print_hidden_board(self):
+        """
+        print the computer's board with the ships hidden to the player
+        """
+        print("\nThe computer's board.\n")
+        print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
+        for i, row in enumerate(self.hidden_board):
+            # create a new variable that contains an empty list
+            hidden_row = []
+            # iterate through each cell in each row
+            for cells in row:
+                # add any cells with "S" to the hidden_row list as "."
+                if cells == "S":
+                    hidden_row.append(".")
+                # add other cells to hidden_row list as 'cell' i.e. "."
+                else:
+                    hidden_row.append(cell)
+            print(f"{i + 1} " + " ".join(hidden_row))
+
 
 def what_size():
     """
@@ -87,6 +119,8 @@ def main():
     board_size = what_size()
     game = GameBoard(board_size)
     game.print_board()
+    computer = ComputerBoard(board_size)
+    computer.print_hidden_board()
 
 welcome()
 main()

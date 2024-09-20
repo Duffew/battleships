@@ -1,5 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import random # python module for generating random integers
@@ -20,18 +18,17 @@ def welcome():
             print("That is not a valid input. Please try again.")
             continue
 
-class GameBoard:
-    
+class GameBoard: 
     def __init__(self,size):
         """
         Initialise the GameBoard class
         """
         # define the GameBoard attributes
-        self.size = size
-        self.board = [["." for x in range(size)] for y in range(size)]
-        self.total_cells = size * size
-        self.num_ships = (self.total_cells * 20) // 100 # ships are 20% of the total cells on the board
-        self.place_random_ships() # method to randomly place the ships on the board
+        self.size = size # the GameBoard has a size (player defined)
+        self.board = [["." for x in range(size)] for y in range(size)] # the GameBoard board is a list of x, y coordinates with a range of sizes
+        self.total_cells = size * size # the GameBoard has a total number of cells 
+        self.num_ships = (self.total_cells * 20) // 100 # 20% of the GameBoard cells are ships
+        self.place_random_ships() # ships are placed randomly on the GameBoard when this method is called
 
     def place_random_ships(self):
         """
@@ -50,39 +47,37 @@ class GameBoard:
         """
         Print the GameBoard
         """
-        # print column headers A - ? - use list comprehension to iterate
+        # iterate column headers A - ? beginning with a double space for alignment purposes
+        # chr(65 + i) - indexing begins with capital 'A' (65th character in ASCII)
         print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
+        # use enumerate() to return both row index (i) and row content (row) as a pair
         for i, row in enumerate(self.board):
             # print row number and rows of "."
             print(f"{i + 1} " + " ".join(row))
 
-# create a new class for the computer's game board, which inherits attributes
+# create a new class for the computer's game board, which inherits attributes 
 # from the GameBoard class and adds new attributes e.g. hidden from player
-class ComputerBoard(GameBoard):
+class ComputerBoard(GameBoard):   
     def __init__(self, size):
         """
         initialise the ComputerBoard class
         """
-        # inherit attributes from the GameBoard class
-        super().__init__(size)
+        # inherit attributes from GameBoard class
+        super().__init__(size) 
         # new attribute - store the computer's board as a hidden version
-        self.hidden_board = [["." for _ in range(size) for _ in range(size)]]
+        self.hidden_board = [["." for _ in range(size)] for _ in range(size)]
 
     def print_hidden_board(self):
         """
-        print the computer's board with the ships hidden to the player
+        print the computer's board with ships hidden to the player
         """
         print("\nThe computer's board.\n")
         print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
         for i, row in enumerate(self.hidden_board):
-            # create a new variable that contains an empty list
             hidden_row = []
-            # iterate through each cell in each row
-            for cells in row:
-                # add any cells with "S" to the hidden_row list as "."
-                if cells == "S":
+            for cell in row:
+                if cell == "S":
                     hidden_row.append(".")
-                # add other cells to hidden_row list as 'cell' i.e. "."
                 else:
                     hidden_row.append(cell)
             print(f"{i + 1} " + " ".join(hidden_row))
@@ -98,22 +93,22 @@ def what_size():
             # player inputs the desired board size
             board_size = input("What size board would you like to use?\nPlease choose a number between 4 and 8: ")
 
-            # attempt to convert the input into an integer
+            # attempt to convert the input to an integer
             board_size = int(board_size)
 
-            # check that the integer is within the correct range
+            # check that the integer is within range
             if 4 <= board_size <= 8:
                 print("\nOkay, here is your board!\n")
 
                 # store board_size value for later use
                 return board_size
             else:
-                # if the input is a digit but the integer is out of range
-                raise ValueError("\nThe number must be between 5 and 10.\n")
+                # if the input is a digit but the integer is out of range, raise an expection
+                raise ValueError("\nThe number must be between 5 and 10. Please try again.\n")
         
         except ValueError as e:
-            # assign ValueError to an 'e' variable and catch both non-numeric and range errors
-            print(f"\nInvalid input: {e} \nPlease try again.\n")
+            # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
+            print(f"\nInvalid input: {e}. Please try again.\n")
 
 def main():
     board_size = what_size()

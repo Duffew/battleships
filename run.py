@@ -69,15 +69,19 @@ class ComputerBoard(GameBoard):
 
     def print_hidden_board(self):
         """
-        print the computer's board with ships hidden to the player
+        print the computer's board with the ships hidden to the player
         """
         print("\nThe computer's board.\n")
         print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
         for i, row in enumerate(self.hidden_board):
+            # create a new variable that contains an empty list
             hidden_row = []
+            # iterate through each cell in each row
             for cell in row:
+                # add any cells with "S" to the hidden_row list as "."
                 if cell == "S":
                     hidden_row.append(".")
+                # add other cells to hidden_row list as 'cell' i.e. "."
                 else:
                     hidden_row.append(cell)
             print(f"{i + 1} " + " ".join(hidden_row))

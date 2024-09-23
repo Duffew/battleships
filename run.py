@@ -114,7 +114,7 @@ def what_size():
             # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
             print(f"\nInvalid input: {e}. Please try again.\n")
 
-def guess_col(board_size):
+def guess_column(board_size):
     """
     user inputs a column guess
     """
@@ -134,12 +134,39 @@ def guess_col(board_size):
                 print(f"You selected {guess_col}.")
                 return guess_col
 
+def guess_row(board_size, guess_col):
+    """
+    user inputs a row guess
+    """
+    while True:
+        try:
+            # player inputs the desired row based upon board size
+            guess_row = input(f"Continue to target! Chhose a row from 1 - {board_size}: ")
+
+            # attemp to convert input to an integer
+            guess_row = int(guess_row)
+
+            # check that the integer is within range
+            if 1 <= guess_row <= board_size:
+                print(f"You targeted {guess_col,{guess_row}}!")
+                # store guess_row value for later use
+                return guess_row
+
+            else:
+                # if the input is a digit but the interger is out of range
+                raise ValueError(f"The number must be between 1 and {board_size}")
+        except ValueError as e:
+            print(f"/nInvalid input: {e}. Please try again.\n")
+
+
 def main():
     board_size = what_size()
     game = GameBoard(board_size)
     game.print_board()
     computer = ComputerBoard(board_size)
     computer.print_hidden_board()
+    col_guess = guess_column(board_size)
+    row_guess = guess_row(board_size, col_guess)
 
 welcome()
 main()

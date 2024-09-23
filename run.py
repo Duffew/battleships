@@ -126,7 +126,7 @@ def guess_column(board_size):
         if guess_col == "Q":
             quit()
         if guess_col.isdigit():
-            print(f"You chose {guess_col}. Please chose a letter for the column.")
+            print(f"Invalid input. You chose {guess_col}. Please choose a letter for the column.")
         else:
             if guess_col not in col_headings:
                 print("That column does not exist. Please choose a letter within range.")
@@ -141,14 +141,14 @@ def guess_row(board_size, guess_col):
     while True:
         try:
             # player inputs the desired row based upon board size
-            guess_row = input(f"Continue to target! Chhose a row from 1 - {board_size}: ")
+            guess_row = input(f"Continue to target! Choose a row from 1 - {board_size}: ")
 
             # attemp to convert input to an integer
             guess_row = int(guess_row)
 
             # check that the integer is within range
             if 1 <= guess_row <= board_size:
-                print(f"You targeted {guess_col,{guess_row}}!")
+                print(f"You targeted {guess_col}{guess_row}!")
                 # store guess_row value for later use
                 return guess_row
 

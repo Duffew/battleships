@@ -114,6 +114,26 @@ def what_size():
             # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
             print(f"\nInvalid input: {e}. Please try again.\n")
 
+def guess_col(board_size):
+    """
+    user inputs a column guess
+    """
+    # store the columm headings based upon board size
+    col_headings = [chr(65 + i) for i in range(board_size)]
+    while True:
+        # input prompt shows the column headings available based upon board size
+        guess_col = input(f"\nTarget the computer! Choose a column {" ".join(col_headings)}: ").upper()
+        if guess_col == "Q":
+            quit()
+        if guess_col.isdigit():
+            print(f"You chose {guess_col}. Please chose a letter for the column.")
+        else:
+            if guess_col not in col_headings:
+                print("That column does not exist. Please choose a letter within range.")
+            else:
+                print(f"You selected {guess_col}.")
+                return guess_col
+
 def main():
     board_size = what_size()
     game = GameBoard(board_size)

@@ -169,14 +169,17 @@ def game_setup():
 
     computer_board = ComputerBoard(board_size)
     computer_board.print_hidden_board()
-    turn_player = player_turn(computer_board, board_size)
+    
 
     return player_board, computer_board, board_size
     
 
-def player_turn(computer_board, board_size):
+def player_turn(player_board, computer_board, board_size):
+    """
+    manage the user's turn
+    """
 
-    #instruct python to use the global variable PLAYER_TURNS
+    # instruct python to use the global variable PLAYER_TURNS
     global PLAYER_TURNS
 
     while True:
@@ -214,5 +217,49 @@ def player_turn(computer_board, board_size):
         PLAYER_TURNS += 1
         break # exit the loop after a valid guess
 
+def computer_turn(player_board, board_size):
+    """
+    manage the computer's turn
+    """
+    # instruct python to use the global variable COMPUTER_TURNS
+    global COMPUTER_TURNS
+
+    while True:
+        # store random integers between 0 and the board size minus 1 for the columns and rows
+        column_index = random.randint(0, board_size - 1)
+        row_index = random.randint(0, board_size - 1)
+
+        # check that this target has not been used previously
+        if (row_index, column_index) not in PREVIOUS_COMPUTER_TARGETS:
+            PREVIOUS_COMPUTER_TARGETS.append((row_index, column_index))
+
+            # check to see if the computer hit a player ship
+            if player_board.board[row_index][column_index] == "S":
+                print(f"The computer hit your ship at {chr(65 + column_index)}{row_index + 1}!")
+                # update the player's board with "!" for hit
+                player_board.board[row_index][column_index] = "!"
+            else:
+                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}.")
+                # update the player's board with "O" for miss
+                player_board.board[row_index][column_index] = "O"
+
+            # print the updted player board
+            player_board.print_board()
+            break
+
+def play_game():
+    """
+    Alternates turns between the player and the computer.
+    """
+    player_board, computer_board, board_size = game_setup()
+
+    # Main game loop
+    while True:
+        print("\nPlayer's Turn")
+        player_turn(player_board, computer_board, board_size)
+
+        print("\nComputer's Turn")
+        computer_turn(player_board, board_size)
+
 welcome()
-game_setup()
+play_game()

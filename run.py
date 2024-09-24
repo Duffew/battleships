@@ -164,13 +164,55 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
 
 def game_setup():
     board_size = what_size()
-    game = GameBoard(board_size)
-    game.print_board()
+    player_board = GameBoard(board_size)
+    player_board.print_board()
+
     computer_board = ComputerBoard(board_size)
     computer_board.print_hidden_board()
-    column_guess = player_guess_column(board_size)
-    row_guess = player_guess_row(board_size, column_guess)
+    turn_player = player_turn(computer_board, board_size)
+
+    return player_board, computer_board, board_size
     
+
+def player_turn(computer_board, board_size):
+
+    #instruct python to use the global variable PLAYER_TURNS
+    global PLAYER_TURNS
+
+    while True:
+        # get player's column guess
+        column_guess = player_guess_column(board_size)
+
+        # get player's row guess using column guess
+        row_guess = player_guess_row(board_size, column_guess)
+
+        # combine column and row guesses
+        target = f"{column_guess}{row_guess}"
+
+        # check that this turn's coordinates haven't already been guessed
+        if target in PREVIOUS_PLAYER_TARGETS:
+            print(f"You already targeted {target}.")
+            continue
+
+        # use ord() to convert the guessed column heading BACK into its index reference - ASCII 'A' = 65
+        col_index = ord(column_guess) - 65
+
+        # check the computer's board
+        if computer_board.board[row_guess - 1][col_index] == "S":
+            print("You hit a ship!")
+            # update the hidden board with "!" for a hit
+            computer_board.hidden_board[row_guess - 1][col_index] = "!"
+        else:
+            print(f"Miss! No ships at {target}!")
+            computer_board.hidden_board[row_guess - 1][col_index] = "O"
+
+        # add target to list of previous choices
+        PREVIOUS_PLAYER_TARGETS.append(target)
+        print(f"{target} recorded.")
+        
+        computer_board.print_hidden_board()        
+        PLAYER_TURNS += 1
+        break # exit the loop after a valid guess
+
 welcome()
 game_setup()
-

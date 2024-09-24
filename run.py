@@ -118,6 +118,18 @@ def what_size():
             # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
             print(f"\nInvalid input: {e}. Please try again.\n")
 
+def game_setup():
+    board_size = what_size()
+
+    player_board = GameBoard(board_size)
+    player_board.print_board()
+
+    computer_board = ComputerBoard(board_size)
+    computer_board.print_hidden_board()
+    
+    # store values for use in the play_game() function below
+    return player_board, computer_board, board_size
+
 def player_guess_column(board_size):
     """
     user inputs a column guess - makes use of the returned board_size value
@@ -161,19 +173,6 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
         except ValueError as e:
             print(f"\nInvalid input: {e}. Please try again.\n")
 
-
-def game_setup():
-    board_size = what_size()
-    player_board = GameBoard(board_size)
-    player_board.print_board()
-
-    computer_board = ComputerBoard(board_size)
-    computer_board.print_hidden_board()
-    
-
-    return player_board, computer_board, board_size
-    
-
 def player_turn(player_board, computer_board, board_size):
     """
     manage the user's turn
@@ -181,7 +180,6 @@ def player_turn(player_board, computer_board, board_size):
 
     # instruct python to use the global variable PLAYER_TURNS
     global PLAYER_TURNS
-
     while True:
         # get player's column guess
         column_guess = player_guess_column(board_size)
@@ -223,7 +221,6 @@ def computer_turn(player_board, board_size):
     """
     # instruct python to use the global variable COMPUTER_TURNS
     global COMPUTER_TURNS
-
     while True:
         # store random integers between 0 and the board size minus 1 for the columns and rows
         column_index = random.randint(0, board_size - 1)
@@ -245,12 +242,14 @@ def computer_turn(player_board, board_size):
 
             # print the updted player board
             player_board.print_board()
-            break
+            COMPUTER_TURNS += 1
+            break # exit the loop after a valid guess
 
 def play_game():
     """
     Alternates turns between the player and the computer.
     """
+    # unpack the values returned by the game_setup() function
     player_board, computer_board, board_size = game_setup()
 
     # Main game loop

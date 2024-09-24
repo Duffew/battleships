@@ -1,6 +1,10 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import random # python module for generating random integers
+PLAYER_TURNS = 0
+COMPUTER_TURNS = 0
+PREVIOUS_PLAYER_TARGETS = []
+PREVIOUS_COMPUTER_TARGETS = []
 
 def welcome():
     print("\nWelcome to Battleships!\n")
@@ -71,7 +75,7 @@ class ComputerBoard(GameBoard):
         """
         print the computer's board with the ships hidden to the player
         """
-        print("\nThe computer's board.\n")
+        print("\nHere is the computer's board.\n")
         print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
         for i, row in enumerate(self.hidden_board):
             # create a new variable that contains an empty list
@@ -102,7 +106,7 @@ def what_size():
 
             # check that the integer is within range
             if 4 <= board_size <= 8:
-                print("\nOkay, here is your board!\n")
+                print("\nOkay, here is your board! (S = ship)\n")
 
                 # store board_size value for later use
                 return board_size
@@ -114,59 +118,59 @@ def what_size():
             # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
             print(f"\nInvalid input: {e}. Please try again.\n")
 
-def guess_column(board_size):
+def player_guess_column(board_size):
     """
-    user inputs a column guess
+    user inputs a column guess - makes use of the returned board_size value
     """
-    # store the columm headings based upon board size
+    # store the column headings based upon board size
     col_headings = [chr(65 + i) for i in range(board_size)]
     while True:
-        # input prompt shows the column headings available based upon board size
-        guess_col = input(f"\nTarget the computer! Choose a column {" ".join(col_headings)}: ").upper()
-        if guess_col == "Q":
+        # input text shows the column headings available based upon board size
+        column_guess = input(f"Target the computer! Choose a column from {" ".join(col_headings)} or Q to quit: ").upper()
+        if column_guess == "Q":
             quit()
-        if guess_col.isdigit():
-            print(f"Invalid input. You chose {guess_col}. Please choose a letter for the column.")
+        if column_guess.isdigit():
+            print(f"You chose {column_guess}. Please choose a letter for the column.")
+        elif column_guess not in col_headings:
+            print(f"That column is not available. Please choose a column within range.")
         else:
-            if guess_col not in col_headings:
-                print("That column does not exist. Please choose a letter within range.")
-            else:
-                print(f"You selected {guess_col}.")
-                return guess_col
-
-def guess_row(board_size, guess_col):
+            print(f"You selected column {column_guess}.")
+            return column_guess
+        
+def player_guess_row(board_size, column_guess): # this function takes (makes use of) data stored in the board_size and gcolumn_guess variables
     """
     user inputs a row guess
+
     """
     while True:
         try:
-            # player inputs the desired row based upon board size
-            guess_row = input(f"Continue to target! Choose a row from 1 - {board_size}: ")
+            # player inputs the desired row
+            row_guess = input(f"\nContinue to target! Choose a row from 1 - {board_size}: ")
 
-            # attemp to convert input to an integer
-            guess_row = int(guess_row)
+            # attempt to convert the input to an integer
+            row_guess = int(row_guess)
 
             # check that the integer is within range
-            if 1 <= guess_row <= board_size:
-                print(f"You targeted {guess_col}{guess_row}!")
-                # store guess_row value for later use
-                return guess_row
-
+            if 1 <= row_guess <= board_size:
+                print(f"You targeted {column_guess}{row_guess}!")
+                # store row_guess value for later use
+                return row_guess
             else:
-                # if the input is a digit but the interger is out of range
-                raise ValueError(f"The number must be between 1 and {board_size}")
+                # if the input is a digit but the integer is out of range, raise an expection
+                raise ValueError(f"The number nust be between 1 and {board_size}")
         except ValueError as e:
-            print(f"/nInvalid input: {e}. Please try again.\n")
+            print(f"\nInvalid input: {e}. Please try again.\n")
 
 
-def main():
+def game_setup():
     board_size = what_size()
     game = GameBoard(board_size)
     game.print_board()
-    computer = ComputerBoard(board_size)
-    computer.print_hidden_board()
-    col_guess = guess_column(board_size)
-    row_guess = guess_row(board_size, col_guess)
-
+    computer_board = ComputerBoard(board_size)
+    computer_board.print_hidden_board()
+    column_guess = player_guess_column(board_size)
+    row_guess = player_guess_row(board_size, column_guess)
+    
 welcome()
-main()
+game_setup()
+

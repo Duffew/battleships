@@ -5,6 +5,8 @@ PLAYER_TURNS = 0
 COMPUTER_TURNS = 0
 PREVIOUS_PLAYER_TARGETS = []
 PREVIOUS_COMPUTER_TARGETS = []
+PLAYER_SHIPS_REMAINING = 0
+COMPUTER_SHIPS_REMAINING = 0
 
 def welcome():
     print("\nWelcome to Battleships!\n")
@@ -90,10 +92,9 @@ class ComputerBoard(GameBoard):
                     hidden_row.append(cell)
             print(f"{i + 1} " + " ".join(hidden_row))
 
-
 def what_size():
     """
-    generate a game board based upon the player's choice
+    generate a game board based upon the player's choice of board size
     """
     while True:
         # use 'try' and 'except' statements to catch non-numeric and out of range inputs
@@ -119,6 +120,10 @@ def what_size():
             print(f"\nInvalid input: {e}. Please try again.\n")
 
 def game_setup():
+    """
+    set up the player's and computer's board
+    based upon player's chosen board size
+    """
     board_size = what_size()
 
     player_board = GameBoard(board_size)
@@ -126,6 +131,13 @@ def game_setup():
 
     computer_board = ComputerBoard(board_size)
     computer_board.print_hidden_board()
+
+    global PLAYER_SHIPS_REMAINING
+    global COMPUTER_SHIPS_REMAINING
+
+    # get the starting number of ships for the player and the computer
+    PLAYER_SHIPS_REMAINING = player_board.num_ships
+    COMPUTER_SHIPS_REMAINING = computer_board.num_ships
     
     # store values for use in the play_game() function below
     return player_board, computer_board, board_size
@@ -149,7 +161,7 @@ def player_guess_column(board_size):
             print(f"You selected column {column_guess}.")
             return column_guess
         
-def player_guess_row(board_size, column_guess): # this function takes (makes use of) data stored in the board_size and gcolumn_guess variables
+def player_guess_row(board_size, column_guess): # this function takes (makes use of) data stored in the board_size and column_guess variables
     """
     user inputs a row guess
 
@@ -178,8 +190,11 @@ def player_turn(player_board, computer_board, board_size):
     manage the user's turn
     """
 
-    # instruct python to use the global variable PLAYER_TURNS
+    # instruct python to use global variables
     global PLAYER_TURNS
+    global COMPUTER_SHIPS_REMAINING
+    global PREVIOUS_PLAYER_TARGETS
+
     while True:
         # get player's column guess
         column_guess = player_guess_column(board_size)
@@ -200,11 +215,13 @@ def player_turn(player_board, computer_board, board_size):
 
         # check the computer's board
         if computer_board.board[row_guess - 1][col_index] == "S":
-            print("You hit a ship!")
+            COMPUTER_SHIPS_REMAINING -= 1
+            print(f"You sank a ship! The computer has {COMPUTER_SHIPS_REMAINING} ships remaining!")
             # update the hidden board with "!" for a hit
             computer_board.hidden_board[row_guess - 1][col_index] = "!"
         else:
-            print(f"Miss! No ships at {target}!")
+            print(f"Miss! No ships at {target}! The computer has {COMPUTER_SHIPS_REMAINING} ships remaining!")
+            # update the hidden board with "O" for a miss
             computer_board.hidden_board[row_guess - 1][col_index] = "O"
 
         # add target to list of previous choices
@@ -219,8 +236,11 @@ def computer_turn(player_board, board_size):
     """
     manage the computer's turn
     """
-    # instruct python to use the global variable COMPUTER_TURNS
+    # instruct python to use global variables
     global COMPUTER_TURNS
+    global PLAYER_SHIPS_REMAINING
+    global PREVIOUS_COMPUTER_TARGETS
+
     while True:
         # store random integers between 0 and the board size minus 1 for the columns and rows
         column_index = random.randint(0, board_size - 1)
@@ -230,13 +250,14 @@ def computer_turn(player_board, board_size):
         if (row_index, column_index) not in PREVIOUS_COMPUTER_TARGETS:
             PREVIOUS_COMPUTER_TARGETS.append((row_index, column_index))
 
-            # check to see if the computer hit a player ship
+            # check to see if the computer sank a player ship
             if player_board.board[row_index][column_index] == "S":
-                print(f"The computer hit your ship at {chr(65 + column_index)}{row_index + 1}!")
+                PLAYER_SHIPS_REMAINING -= 1
+                print(f"The computer sank your ship at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} ships remaining!")
                 # update the player's board with "!" for hit
                 player_board.board[row_index][column_index] = "!"
             else:
-                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}.")
+                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}. You have {PLAYER_SHIPS_REMAINING} ships remaining!")
                 # update the player's board with "O" for miss
                 player_board.board[row_index][column_index] = "O"
 

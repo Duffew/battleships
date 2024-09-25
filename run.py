@@ -176,7 +176,7 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
 
             # check that the integer is within range
             if 1 <= row_guess <= board_size:
-                print(f"You targeted {column_guess}{row_guess}!")
+                print(f"You targeted {column_guess}{row_guess}!\n")
                 # store row_guess value for later use
                 return row_guess
             else:
@@ -207,7 +207,7 @@ def player_turn(player_board, computer_board, board_size):
 
         # check that this turn's coordinates haven't already been guessed
         if target in PREVIOUS_PLAYER_TARGETS:
-            print(f"You already targeted {target}.")
+            print(f"You already targeted {target}. Please choose another target.")
             continue
 
         # use ord() to convert the guessed column heading BACK into its index reference - ASCII 'A' = 65
@@ -215,7 +215,6 @@ def player_turn(player_board, computer_board, board_size):
 
         # check the computer's board
         if computer_board.board[row_guess - 1][col_index] == "S":
-            # decrement the number of ships after a hit
             COMPUTER_SHIPS_REMAINING -= 1
             print(f"You sank a ship! The computer has {COMPUTER_SHIPS_REMAINING} ships remaining!")
             # update the hidden board with "!" for a hit
@@ -232,6 +231,12 @@ def player_turn(player_board, computer_board, board_size):
         computer_board.print_hidden_board()        
         PLAYER_TURNS += 1
         break # exit the loop after a valid guess
+    
+    # add win conditions for the player
+    if COMPUTER_SHIPS_REMAINING == 0:
+        print(f"You sank all the computer's ships in {PLAYER_TURNS} turns. Game Over!")
+        input("Press 'Enter' to quit.")
+        quit()
 
 def computer_turn(player_board, board_size):
     """
@@ -253,7 +258,6 @@ def computer_turn(player_board, board_size):
 
             # check to see if the computer sank a player ship
             if player_board.board[row_index][column_index] == "S":
-                # decrement the number of ships remaining after a hit
                 PLAYER_SHIPS_REMAINING -= 1
                 print(f"The computer sank your ship at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} ships remaining!")
                 # update the player's board with "!" for hit
@@ -267,6 +271,12 @@ def computer_turn(player_board, board_size):
             player_board.print_board()
             COMPUTER_TURNS += 1
             break # exit the loop after a valid guess
+    
+    # add win conditions for the computer
+    if PLAYER_SHIPS_REMAINING == 0:
+        print(f"The computer sank all your ships in {COMPUTER_TURNS} turns. You lost! Game Over!")
+        input("Press 'Enter' to quit.")
+        quit()
 
 def play_game():
     """
@@ -279,6 +289,9 @@ def play_game():
     while True:
         print("\nPlayer's Turn")
         player_turn(player_board, computer_board, board_size)
+        
+        # control the display of the computer's trun until the player is ready
+        input("\nPress 'Enter' to see the computer's turn...")
 
         print("\nComputer's Turn")
         computer_turn(player_board, board_size)

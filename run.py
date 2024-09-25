@@ -215,6 +215,7 @@ def player_turn(player_board, computer_board, board_size):
 
         # check the computer's board
         if computer_board.board[row_guess - 1][col_index] == "S":
+            # decrement the number of ships after a hit
             COMPUTER_SHIPS_REMAINING -= 1
             print(f"You sank a ship! The computer has {COMPUTER_SHIPS_REMAINING} ships remaining!")
             # update the hidden board with "!" for a hit
@@ -252,6 +253,7 @@ def computer_turn(player_board, board_size):
 
             # check to see if the computer sank a player ship
             if player_board.board[row_index][column_index] == "S":
+                # decrement the number of ships remaining after a hit
                 PLAYER_SHIPS_REMAINING -= 1
                 print(f"The computer sank your ship at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} ships remaining!")
                 # update the player's board with "!" for hit

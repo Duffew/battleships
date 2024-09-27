@@ -305,20 +305,46 @@ def computer_turn(player_board, board_size):
 def play_game():
     """
     Alternates turns between the player and the computer.
+    Manage win conditions
     """
+    global PLAYER_TURNS
+    global COMPUTER_TURNS
+
     # unpack the values returned by the game_setup() function
     player_board, computer_board, board_size = game_setup()
 
     # Main game loop
     while True:
         print("\nPlayer's Turn.")
+        # call player's turn function
         player_turn(player_board, computer_board, board_size)
-        
-        # control the display of the computer's trun until the player is ready
+
+        # check that the player has the potentail to win before the computer plays its turn
+        if COMPUTER_SHIPS_REMAINING == 0:
+            # Allow the computer to take its final turn
+            input("\nPress 'Enter' to see the computer's fianl turn...")
+            print("Computer's Turn.")
+
+            # call computer turn function
+            computer_turn(player_board, board_size)
+
+            # check for a draw after the computer's fianl turn
+            if PLAYER_SHIPS_REMAINING == 0:
+                print("\nIt's a draw! Game Over!")
+            else:
+                print(f"\nThe computer couldn't sink all your ships! You won the game in {PLAYER_TURNS} turns! Game Over!")
+            break
+
+        # allow the player to control the computer's turn by hitting 'Enter' when ready
         input("\nPress 'Enter' to see the computer's turn...")
 
-        print("\nComputer's Turn.")
+        print("\nComputer's Turn")
         computer_turn(player_board, board_size)
+
+        # Check if the computer has won after its turn
+        if PLAYER_SHIPS_REMAINING == 0:
+            print(f"\nThe computer sank all your ships in {COMPUTER_TURNS} turns! Better luck next time! Game Over!")
+            break
 
 welcome()
 play_game()

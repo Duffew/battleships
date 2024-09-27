@@ -100,13 +100,13 @@ def what_size():
         # use 'try' and 'except' statements to catch non-numeric and out of range inputs
         try:
             # player inputs the desired board size
-            board_size = input("What size board would you like to use?\nPlease choose a number between 4 and 8: ")
+            board_size = input("What size board would you like to use?\nPlease choose a number between 3 and 8: ")
 
             # attempt to convert the input to an integer
             board_size = int(board_size)
 
             # check that the integer is within range
-            if 4 <= board_size <= 8:
+            if 3 <= board_size <= 8:
                 print("\nOkay, here is your board! (S = ship)\n")
 
                 # store board_size value for later use
@@ -216,7 +216,7 @@ def player_turn(player_board, computer_board, board_size):
         # check the computer's board
         if computer_board.board[row_guess - 1][col_index] == "S":
             COMPUTER_SHIPS_REMAINING -= 1
-            print(f"You sank a ship! The computer has {COMPUTER_SHIPS_REMAINING} ships remaining!")
+            print(f"You sank a ship at {target}! The computer has {COMPUTER_SHIPS_REMAINING} ships remaining!")
             # update the hidden board with "!" for a hit
             computer_board.hidden_board[row_guess - 1][col_index] = "!"
         else:
@@ -232,11 +232,9 @@ def player_turn(player_board, computer_board, board_size):
         PLAYER_TURNS += 1
         break # exit the loop after a valid guess
     
-    # add win conditions for the player
+    # add win conditions for the player's turn
     if COMPUTER_SHIPS_REMAINING == 0:
-        print(f"You sank all the computer's ships in {PLAYER_TURNS} turns. Game Over!")
-        input("Press 'Enter' to quit.")
-        quit()
+        print(f"\nYou sank all the computer's ships in {PLAYER_TURNS} turns. Before you win, allow the computer to take its turn...\n")
 
 def computer_turn(player_board, board_size):
     """
@@ -267,16 +265,30 @@ def computer_turn(player_board, board_size):
                 # update the player's board with "O" for miss
                 player_board.board[row_index][column_index] = "O"
 
-            # print the updted player board
+            # print the updated player board
             player_board.print_board()
             COMPUTER_TURNS += 1
             break # exit the loop after a valid guess
     
-    # add win conditions for the computer
-    if PLAYER_SHIPS_REMAINING == 0:
-        print(f"The computer sank all your ships in {COMPUTER_TURNS} turns. You lost! Game Over!")
-        input("Press 'Enter' to quit.")
-        quit()
+    # add win conditions for the computer's turn
+    # on their final turn, the computer also sinks a player's last ship
+    if COMPUTER_SHIPS_REMAINING == 0 and PLAYER_SHIPS_REMAINING == 0:
+            print("\nIt's a draw!\n")
+            input("Press 'Enter' to quit.")
+            quit()
+
+    # the computer failed to sink the player's final ship
+    if COMPUTER_SHIPS_REMAINING == 0 and PLAYER_SHIPS_REMAINING != 0:
+            print("\n...the computer couldn't sink all your ships! Player wins!\n")
+            input("Press 'Enter' to quit.")
+            quit()
+    
+    # the computer sank all the player's ships before the player sank the computer's
+    if COMPUTER_SHIPS_REMAINING != 0 and PLAYER_SHIPS_REMAINING == 0:
+            print(f"\nThe computer sank all your ships in {COMPUTER_TURNS}! The computer wins! Better luck next time!\n")
+            input("Press 'Enter' to quit.")
+            quit()
+
 
 def play_game():
     """

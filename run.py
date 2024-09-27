@@ -334,10 +334,6 @@ def play_game():
             # call computer turn function
             computer_turn(player_board, board_size)
 
-            # Print the updated player board to show the final state
-            print("\nHere is your final board after the computer's last turn:\n")
-            player_board.print_board()
-
             # check for a draw after the computer's final turn
             if PLAYER_SHIPS_REMAINING == 0:
                 print("\nIt's a draw! Game Over!")

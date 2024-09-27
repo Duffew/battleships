@@ -247,7 +247,7 @@ def player_turn(player_board, computer_board, board_size):
     
     # check for a possible player win
     if COMPUTER_SHIPS_REMAINING == 0:
-        print(f"\nYou sank all the computer's ships in {PLAYER_TURNS}!")
+        print(f"\nYou sank all the computer's ships in {PLAYER_TURNS} turns!")
         print("Allow the computer to take its final turn...")
 
 def computer_turn(player_board, board_size):
@@ -282,13 +282,13 @@ def computer_turn(player_board, board_size):
                     #update the player's board for a computer hit
                     player_board.board[row_index][column_index] = "!"
 
-                else:
-                    # check for how many ships the player has remaining after a miss and use 'ship' or 'ships' in print message
-                    how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
-                    print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
+            else:
+                   # check for how many ships the player has remaining after a miss and use 'ship' or 'ships' in print message
+                how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
+                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
 
-                    #update the player's board for a computer miss
-                    player_board.board[row_index][column_index] = "O"
+                #update the player's board for a computer miss
+                player_board.board[row_index][column_index] = "O"
 
 
             # print the updated player board
@@ -319,16 +319,20 @@ def play_game():
         # call player's turn function
         player_turn(player_board, computer_board, board_size)
 
-        # check that the player has the potentail to win before the computer plays its turn
+        # check that the player has the potential to win before the computer plays its turn
         if COMPUTER_SHIPS_REMAINING == 0:
             # Allow the computer to take its final turn
-            input("\nPress 'Enter' to see the computer's fianl turn...")
+            input("\nPress 'Enter' to see the computer's final turn...")
             print("Computer's Turn.")
 
             # call computer turn function
             computer_turn(player_board, board_size)
 
-            # check for a draw after the computer's fianl turn
+            # Print the updated player board to show the final state
+            print("\nHere is your final board after the computer's last turn:\n")
+            player_board.print_board()
+
+            # check for a draw after the computer's final turn
             if PLAYER_SHIPS_REMAINING == 0:
                 print("\nIt's a draw! Game Over!")
             else:
@@ -345,6 +349,7 @@ def play_game():
         if PLAYER_SHIPS_REMAINING == 0:
             print(f"\nThe computer sank all your ships in {COMPUTER_TURNS} turns! Better luck next time! Game Over!")
             break
+
 
 welcome()
 play_game()

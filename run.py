@@ -282,10 +282,16 @@ def computer_turn(player_board, board_size):
                     #update the player's board for a computer hit
                     player_board.board[row_index][column_index] = "!"
 
+                if PLAYER_SHIPS_REMAINING == 0:
+                    how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
+                    print(f"The computer sank your last ship at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
+                    player_board.board[row_index][column_index] = "!"
+
             else:
                    # check for how many ships the player has remaining after a miss and use 'ship' or 'ships' in print message
                 how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
                 print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
+                player_board.board[row_index][column_index] = "!"
 
                 #update the player's board for a computer miss
                 player_board.board[row_index][column_index] = "O"
@@ -349,7 +355,6 @@ def play_game():
         if PLAYER_SHIPS_REMAINING == 0:
             print(f"\nThe computer sank all your ships in {COMPUTER_TURNS} turns! Better luck next time! Game Over!")
             break
-
 
 welcome()
 play_game()

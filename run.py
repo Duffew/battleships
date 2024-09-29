@@ -285,7 +285,7 @@ def computer_turn(player_board, board_size):
 
                 # if player's last ship is sunk
                 if PLAYER_SHIPS_REMAINING == 0:
-                    print(f"The computer sank your last ship at {chr(65 + column_index)}{row_index + 1}! You have no ships remaining!")
+                    print(f"The computer sank your last ship at {chr(65 + column_index)}{row_index + 1}! You have no ships remaining!\n")
                     break
                 else:
                     # check for how many ships the player has remaining after a hit and use 'ship' or 'ships' in the print message
@@ -324,7 +324,7 @@ def play_game():
 
     # Main game loop
     while True:
-        print("\nPlayer's Turn.")
+        print("\nYour Turn.")
         input("Press 'Enter' to make a guess ('!' = 'Sink', 'O' = 'Miss').")
         # call player's turn function
         computer_board.print_hidden_board()
@@ -354,6 +354,8 @@ def play_game():
 
         # Check if the computer has won after its turn
         if PLAYER_SHIPS_REMAINING == 0:
+            player_board.print_board()
+            COMPUTER_TURNS += 1
             print(f"\nThe computer sank all your ships in {COMPUTER_TURNS} turns! Better luck next time! Game Over!\n")
             break
 

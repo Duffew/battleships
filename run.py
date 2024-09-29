@@ -108,19 +108,17 @@ def what_size():
 
             # check that the integer is within range
             if 3 <= board_size <= 8:
-                print("\nOkay, here is your board! (S = ship)\n")
+                print("\nOkay, here is your board. (S = ship)\n")
 
                 # store board_size value for later use
                 return board_size
             else:
                 # if the input is a digit but the integer is out of range, raise an expection
-                raise ValueError("\nThe number must be between 4 and 8.\n")
+                raise ValueError("\nThe number must be between 3 and 8.\n")
         
         except ValueError as e:
             # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
-            print(f"\nInvalid input: {e}. Please try again.\n")
-
-        input("\nPress 'Enter' to make your first guess ('!' = 'Sink', 'O' = 'Miss')\n")
+            print(f"\nInvalid input: {e}Please try again.\n")
         
 
 def game_setup():
@@ -142,10 +140,10 @@ def game_setup():
     # get the starting number of ships for the player and the computer
     PLAYER_SHIPS_REMAINING = player_board.num_ships
     COMPUTER_SHIPS_REMAINING = computer_board.num_ships
-    
+
+    input("\nThe boards are set. Press 'Enter' to begin the game...")
     # store values for use in the play_game() function below
     return player_board, computer_board, board_size
-
 
 
 def player_guess_column(board_size):
@@ -175,7 +173,7 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
     while True:
         try:
             # player inputs the desired row
-            row_guess = input(f"\nContinue to target! Choose a row from 1 - {board_size}: \n")
+            row_guess = input(f"\nContinue to target. Choose a row from 1 - {board_size}: \n")
 
             # attempt to convert the input to an integer
             row_guess = int(row_guess)

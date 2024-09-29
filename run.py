@@ -120,6 +120,9 @@ def what_size():
             # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
             print(f"\nInvalid input: {e}. Please try again.\n")
 
+        input("\nPress 'Enter' to make your first guess ('!' = 'Sink', 'O' = 'Miss')\n")
+        
+
 def game_setup():
     """
     set up the player's and computer's board
@@ -143,6 +146,8 @@ def game_setup():
     # store values for use in the play_game() function below
     return player_board, computer_board, board_size
 
+
+
 def player_guess_column(board_size):
     """
     user inputs a column guess - makes use of the returned board_size value
@@ -151,7 +156,7 @@ def player_guess_column(board_size):
     col_headings = [chr(65 + i) for i in range(board_size)]
     while True:
         # input text shows the column headings available based upon board size
-        column_guess = input(f"Target the computer! Choose a column from {" ".join(col_headings)} or Q to quit: \n").upper()
+        column_guess = input(f"\nTarget the computer. Choose a column from {" ".join(col_headings)} or Q to quit: \n").upper()
         if column_guess == "Q":
             quit()
         if column_guess.isdigit():
@@ -253,7 +258,7 @@ def player_turn(player_board, computer_board, board_size):
 
 def computer_turn(player_board, board_size):
     """
-    manage the computer's turn
+    Manage the computer's turn.
     """
     # instruct python to use global variables
     global COMPUTER_TURNS
@@ -275,39 +280,36 @@ def computer_turn(player_board, board_size):
                 # decrement player's ships after a hit
                 PLAYER_SHIPS_REMAINING -= 1
 
-                # check for how many ships the player has remaining after a hit and use 'ship' or 'ships' in print message
-                if PLAYER_SHIPS_REMAINING == 1:
-                    how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
-                    print(f"The computer sank your ship at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
-                    
-                    #update the player's board for a computer hit
-                    player_board.board[row_index][column_index] = "!"
-
-                if PLAYER_SHIPS_REMAINING == 0:
-                    how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
-                    print(f"The computer sank your last ship at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
-                    player_board.board[row_index][column_index] = "!"
-
-            else:
-                   # check for how many ships the player has remaining after a miss and use 'ship' or 'ships' in print message
-                how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
-                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}. You have {PLAYER_SHIPS_REMAINING} {how_many} remaining.")
+                # update the player's board for a computer hit
                 player_board.board[row_index][column_index] = "!"
 
-                #update the player's board for a computer miss
+                # if player's last ship is sunk
+                if PLAYER_SHIPS_REMAINING == 0:
+                    print(f"The computer sank your last ship at {chr(65 + column_index)}{row_index + 1}! You have no ships remaining!")
+                    break
+                else:
+                    # check for how many ships the player has remaining after a hit and use 'ship' or 'ships' in the print message
+                    how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
+                    print(f"The computer sank your ship at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
+            else:
+                # update the player's board for a computer miss
                 player_board.board[row_index][column_index] = "O"
 
+                # check for how many ships the player has remaining after a miss and use 'ship' or 'ships' in print message
+                how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
+                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}. You have {PLAYER_SHIPS_REMAINING} {how_many} remaining.")
 
             # print the updated player board
             print("\nHere is your board.\n")
             player_board.print_board()
 
-            #increment the computer's turn tally
+            # increment the computer's turn tally
             COMPUTER_TURNS += 1
 
             # exit the loop after a valid guess
-            break 
-    
+            break
+
+
 
 def play_game():
     """
@@ -323,7 +325,9 @@ def play_game():
     # Main game loop
     while True:
         print("\nPlayer's Turn.")
+        input("Press 'Enter' to make a guess ('!' = 'Sink', 'O' = 'Miss').")
         # call player's turn function
+        computer_board.print_hidden_board()
         player_turn(player_board, computer_board, board_size)
 
         # check that the player has the potential to win before the computer plays its turn
@@ -343,7 +347,7 @@ def play_game():
             break
 
         # allow the player to control the computer's turn by hitting 'Enter' when ready
-        input("\nPress 'Enter' to see the computer's turn...\n")
+        input("\nPress 'Enter' to see the computer's turn...")
 
         print("\nComputer's Turn")
         computer_turn(player_board, board_size)

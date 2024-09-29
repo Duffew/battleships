@@ -177,7 +177,7 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
 
             # check that the integer is within range
             if 1 <= row_guess <= board_size:
-                print(f"You targeted {column_guess}{row_guess}!\n")
+                print(f"You targeted {column_guess}{row_guess}.\n")
                 # store row_guess value for later use
                 return row_guess
             else:
@@ -229,7 +229,7 @@ def player_turn(player_board, computer_board, board_size):
         else:
             # check for how many ships the computer has remaining and use 'ship' or 'ships' in print message after a miss
             how_many = "ship" if COMPUTER_SHIPS_REMAINING == 1 else "ships"
-            print(f"Miss! No ship at {target}! The computer has {COMPUTER_SHIPS_REMAINING} {how_many} remaining!")
+            print(f"Miss! No ship at {target}. The computer has {COMPUTER_SHIPS_REMAINING} {how_many} remaining.")
 
             # update the computer's board with player's guess after a miss
             computer_board.hidden_board[row_guess - 1][col_index] = "O"
@@ -291,7 +291,7 @@ def computer_turn(player_board, board_size):
             else:
                    # check for how many ships the player has remaining after a miss and use 'ship' or 'ships' in print message
                 how_many = "ship" if PLAYER_SHIPS_REMAINING == 1 else "ships"
-                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}! You have {PLAYER_SHIPS_REMAINING} {how_many} remaining!")
+                print(f"The computer missed at {chr(65 + column_index)}{row_index + 1}. You have {PLAYER_SHIPS_REMAINING} {how_many} remaining.")
                 player_board.board[row_index][column_index] = "!"
 
                 #update the player's board for a computer miss

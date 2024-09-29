@@ -13,7 +13,7 @@ def welcome():
     # while loop runs until player provides a valid input
     while True:
         # provides player input field and converts text to lowercase to match the checks below
-        game = input("Would you like to play a game? (y/n): ").lower()
+        game = input("Would you like to play a game? (y/n): \n").lower()
         if game == "n":
             print("Maybe another time. Goodbye!")
             quit()
@@ -24,6 +24,7 @@ def welcome():
             print("That is not a valid input. Please try again.")
             continue
 
+# create a class for the game board
 class GameBoard: 
     def __init__(self,size):
         """
@@ -100,7 +101,7 @@ def what_size():
         # use 'try' and 'except' statements to catch non-numeric and out of range inputs
         try:
             # player inputs the desired board size
-            board_size = input("What size board would you like to use?\nPlease choose a number between 3 and 8: ")
+            board_size = input("What size board would you like to use?\nPlease choose a number between 3 and 8: \n")
 
             # attempt to convert the input to an integer
             board_size = int(board_size)
@@ -113,7 +114,7 @@ def what_size():
                 return board_size
             else:
                 # if the input is a digit but the integer is out of range, raise an expection
-                raise ValueError("\nThe number must be between 5 and 10. Please try again.\n")
+                raise ValueError("\nThe number must be between 4 and 8.\n")
         
         except ValueError as e:
             # assign ValueError to an 'e' variable and catch both non-numeric and custom range errors
@@ -150,7 +151,7 @@ def player_guess_column(board_size):
     col_headings = [chr(65 + i) for i in range(board_size)]
     while True:
         # input text shows the column headings available based upon board size
-        column_guess = input(f"Target the computer! Choose a column from {" ".join(col_headings)} or Q to quit: ").upper()
+        column_guess = input(f"Target the computer! Choose a column from {" ".join(col_headings)} or Q to quit: \n").upper()
         if column_guess == "Q":
             quit()
         if column_guess.isdigit():
@@ -169,7 +170,7 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
     while True:
         try:
             # player inputs the desired row
-            row_guess = input(f"\nContinue to target! Choose a row from 1 - {board_size}: ")
+            row_guess = input(f"\nContinue to target! Choose a row from 1 - {board_size}: \n")
 
             # attempt to convert the input to an integer
             row_guess = int(row_guess)
@@ -221,7 +222,7 @@ def player_turn(player_board, computer_board, board_size):
 
             # check for how many ships the computer has remaining and use 'ship' or 'ships' in print message
             how_many = "ship" if COMPUTER_SHIPS_REMAINING == 1 else "ships"
-            print(f"You sank a ship at {target}! The compuer has {COMPUTER_SHIPS_REMAINING} {how_many} remaining!")
+            print(f"You sank a ship at {target}! The computer has {COMPUTER_SHIPS_REMAINING} {how_many} remaining!")
 
             # update the computer's board with player's guess after a hit
             computer_board.hidden_board[row_guess - 1][col_index] = "!"
@@ -328,7 +329,7 @@ def play_game():
         # check that the player has the potential to win before the computer plays its turn
         if COMPUTER_SHIPS_REMAINING == 0:
             # Allow the computer to take its final turn
-            input("\nPress 'Enter' to see the computer's final turn...")
+            input("\nPress 'Enter' to see the computer's final turn...\n")
             print("Computer's Turn.")
 
             # call computer turn function
@@ -336,20 +337,20 @@ def play_game():
 
             # check for a draw after the computer's final turn
             if PLAYER_SHIPS_REMAINING == 0:
-                print("\nIt's a draw! Game Over!")
+                print("\nIt's a draw! Game Over!\n")
             else:
-                print(f"\nThe computer couldn't sink all your ships! You won the game in {PLAYER_TURNS} turns! Game Over!")
+                print(f"\nThe computer couldn't sink all your ships! You won the game in {PLAYER_TURNS} turns! Game Over!\n")
             break
 
         # allow the player to control the computer's turn by hitting 'Enter' when ready
-        input("\nPress 'Enter' to see the computer's turn...")
+        input("\nPress 'Enter' to see the computer's turn...\n")
 
         print("\nComputer's Turn")
         computer_turn(player_board, board_size)
 
         # Check if the computer has won after its turn
         if PLAYER_SHIPS_REMAINING == 0:
-            print(f"\nThe computer sank all your ships in {COMPUTER_TURNS} turns! Better luck next time! Game Over!")
+            print(f"\nThe computer sank all your ships in {COMPUTER_TURNS} turns! Better luck next time! Game Over!\n")
             break
 
 welcome()

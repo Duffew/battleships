@@ -173,7 +173,7 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
     while True:
         try:
             # player inputs the desired row
-            row_guess = input(f"\nContinue to target. Choose a row from 1 - {board_size}: \n")
+            row_guess = input(f"\nContinue to target! Choose a row from 1 - {board_size}: \n")
 
             # attempt to convert the input to an integer
             row_guess = int(row_guess)
@@ -189,7 +189,7 @@ def player_guess_row(board_size, column_guess): # this function takes (makes use
         except ValueError as e:
             print(f"\nInvalid input: {e}. Please try again.\n")
 
-def player_turn(player_board, computer_board, board_size):
+def player_turn(computer_board, board_size):
     """
     manage the user's turn once a guess has been made
     """
@@ -326,7 +326,7 @@ def play_game():
         input("Press 'Enter' to make a guess ('!' = 'Sink', 'O' = 'Miss').")
         # call player's turn function
         computer_board.print_hidden_board()
-        player_turn(player_board, computer_board, board_size)
+        player_turn(computer_board, board_size)
 
         # check that the player has the potential to win before the computer plays its turn
         if COMPUTER_SHIPS_REMAINING == 0:

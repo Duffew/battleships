@@ -136,7 +136,7 @@ def what_size():
             board_size = int(board_size)
 
             # check that the integer is within range
-            if 3 <= board_size <= 8:
+            if 4 <= board_size <= 8:
                 print("\nOkay, here is your board. (S = ship)\n")
 
                 # store board_size value for later use

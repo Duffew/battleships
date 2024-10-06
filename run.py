@@ -1,4 +1,3 @@
-
 # python module for generating random integers
 import random
 
@@ -431,7 +430,7 @@ def play_game():
             computer_turns += 1
             print(
                 f"\nThe computer sank all your ships in {computer_turns} "
-                f"turns! Better luck next time! Game Over!\n"
+                f"turns! Better luck next time! \nGame Over!\n"
             )
             break
 

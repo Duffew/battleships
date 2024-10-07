@@ -1,6 +1,26 @@
 # Battleships
 
 ## Game Rules
+Battleships is a turn-based guessing game where a player and the computer compete to sink each other's ships.
+
+The player chooses a board size and two boards are randomly generated. The boards are prepopulated with ships based upon the board size. The player's board shows thier ship's locations. The computer's board has their ships hidden.
+
+The player always plays first and chooses coordinates from the computer's board. If the coordinate houses a ship, the computer's board is marked with '!' and the computer loses one ship. If the coordinate is empty, the board is marked with 'O' to indicate a miss. The computer then plays its turn following the same marking conventions. Turns alternate until a winner is detremined or the game is drawn.
+
+The game has been designed so that even though the player always plays first, the player and computer always have the same number of turns to maintain fairness. This means that if that player sinks all the computer ships first, the computer still has a chance to draw the game.
+
+Win conditions:
++ Player wins if:
+    - They sink the computer's last ship AND 
+    - The computer fails to sink the player's last ship on its final turn
++ Computer wins if:
+    - The computer has ships remaining AND
+    - It sinks the player's last ship on its turn
++ The game is drawn if:
+    - The player sinks the computer's last ship AND
+    - The compueter sinks the player's last ship on its final turn
+
+The game can be quit early by the player on thier turn by selecting Q when prompted to choose a column.
 
 ## Features
 ### Current Features

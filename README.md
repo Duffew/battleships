@@ -1,4 +1,11 @@
 # Battleships
+Welcome to Battleships!
+
+This is a Python terminal game, which runs in Code Institutes mock terminal on the Heroku platform.
+
+[Click here to play!](https://battleships-duffew-364e826d24f8.herokuapp.com/)
+
+![battleship mockup](screenshots/mockup.png)
 
 ## Game Rules
 Battleships is a turn-based guessing game where a player and the computer compete to sink each other's ships.

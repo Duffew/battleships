@@ -11,17 +11,30 @@
 
     ![welcome and game setup](screenshots/feat_welcome.png)
 
-+ Games are played against the computer andthe player always takes the first turn
++ Games are played between the computer and the player always takes the first turn
 + Users are able to input data
 + Players can quit the game easily at the beginning of their turn
 + Scores are maintained throughout the game
+
+    ![game play 1](screenshots/feat_gameplay_1.png)
+    ![game play 2](screenshots/feat_gameplay_2.png)
+
 + Turns are tracked and displayed upon game conclusion
 + The player and computer always have the same number of turns to maintain fairness
+
+    ![game play 4](screenshots/feat_gameplay_4.png)
+
 + Input validation and error checking
 
+    ![game play 3](screenshots/feat_gameplay_3.png)
+    
 ### Future Features
 Possible future features might include:
-+ 
++ Enable players to input their name for labeling the board
++ Add colour to the game boards for hits and misses
++ Add audio for hits and misses
++ Enable players to place ships themselves
++ Allow for larger ships to be placed
 
 ## Data Model
 This project employed an Object-Oriented Programming (OOP) approach by making use of a GameBoard class for the player's board and ComputerBoard class for the computer's hidden board. 

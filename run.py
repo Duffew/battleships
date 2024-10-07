@@ -143,7 +143,7 @@ def what_size():
             else:
                 # if the input is a digit but the integer is out of range,
                 # raise an expection
-                raise ValueError("\nThe number must be between 3 and 8.\n")
+                raise ValueError("\nThe number must be between 4 and 8.\n")
         except ValueError as e:
             # assign ValueError to an 'e' variable and catch both non-numeric
             # and custom range errors
@@ -222,9 +222,9 @@ def player_guess_row(board_size, column_guess):
             else:
                 # if the input is a digit but the integer is
                 # out of range, raise an expection
-                raise ValueError(f"Choose be between 1 and {board_size}")
+                raise ValueError(f"Choose between 1 and {board_size}")
         except ValueError as e:
-            print(f"\nInvalid input: {e}. Please try again.\n")
+            print(f"Invalid input: {e}. Please try again.")
 
 
 def player_turn(computer_board, board_size):

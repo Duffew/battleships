@@ -5,7 +5,7 @@ This is a Python terminal game, which runs in Code Institute's mock terminal on 
 
 [Click here to play!](https://battleships-duffew-364e826d24f8.herokuapp.com/)
 
-![battleship mockup](screenshots/mockup.png)
+![battleship mock-up](screenshots/mockup.png)
 
 ## Game Rules
 Battleships is a turn-based guessing game where a player and the computer compete to sink each other's ships.
@@ -60,7 +60,7 @@ The game can be quit early by the player on their turn by selecting Q when promp
 
     - Invalid inputs prompt the player to keep trying until a valid target is chosen
 
-        ![invald inputs](screenshots/feat_invalid.png)
+        ![invalid inputs](screenshots/feat_invalid.png)
     
 ### Future Features
 Possible future features might include:

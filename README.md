@@ -11,8 +11,8 @@
 
     ![welcome and game setup](screenshots/feat_welcome.png)
 
-+ Games are played between the computer and the player always takes the first turn
-+ Users are able to input data
++ Games are played against the computer, and the player always takes the first turn
++ Users are able to input coordinates to make a choice
 + Players can quit the game easily at the beginning of their turn
 + Scores are maintained throughout the game
 
@@ -25,8 +25,13 @@
     ![game play 4](screenshots/feat_gameplay_4.png)
 
 + Input validation and error checking
+    - Duplicate targets prompt player to try again
 
-    ![game play 3](screenshots/feat_gameplay_3.png)
+        ![game play 3](screenshots/feat_gameplay_3.png)
+
+    - Invalid inputs prompt the player to keep trying until a valid target is chosen
+
+        ![invald inputs](screenshots/feat_invalid.png)
     
 ### Future Features
 Possible future features might include:

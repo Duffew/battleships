@@ -208,7 +208,7 @@ def player_guess_row(board_size, column_guess):
     while True:
         try:
             # player inputs the desired row
-            cont = "\nContinue to target! Choose a row from 1 - "
+            cont = "\nContinue to target! Choose a row from 1 -"
             row_guess = input(f"{cont} {board_size}: \n")
 
             # attempt to convert the input to an integer

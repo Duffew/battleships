@@ -5,6 +5,13 @@
 ### Future Features
 
 ## Data Model
+This project employed an Object-Oriented Programming (OOP) approach by making use of a GameBoard class for the player's board and ComputerBoard class for the computer's hidden board. 
+
+The ComputerBoard class inherits the properties of the GameBoard but adds a property to ensure that the player cannot see the computer's ships.
+
+Both classes make use of methods to enable:
++ random ship placement during game setup
++ the boards to be printed to the terminal
 
 ## Testing
 ### Manual Testing
@@ -24,7 +31,7 @@ The project's code was passed through the Code Institute Python Linter validator
 
 ### Bugs
 #### Resolved Bugs
-During development I identified a bug where the programme did not seem to generating the correct number of ships based upon the board size - 20% of the board cells should be ships. For a 5 by 5 board, there should be 5 ships, but as the screenshot below shows, sometimes the programme would generate fewer ships than that.
+During development I identified a bug where the programme did not seem to generate the correct number of ships based upon the board size - 20% of the board cells should be ships. For a 5 by 5 board, there should be 5 ships, but as the screenshot below shows, sometimes the programme would generate fewer ships than that.
 
 ![bug 1 - the problem](screenshots/battle_bugs_1_problem.png)
 

@@ -2,7 +2,26 @@
 
 ## Features
 ### Current Features
++ User defined board size
+    - The user can choose a board size from between 4 and 8 square
+    - Ships are randomly placed on the both the player's and computer's board
+    - The number of ships placed is 20% of the total cells on the board
+    - The computer's ships are hiden from the player unless sunk
+    - The boards feature alphabeticised columns and numeric rows
+
+    ![welcome and game setup](screenshots/feat_welcome.png)
+
++ Games are played against the computer andthe player always takes the first turn
++ Users are able to input data
++ Players can quit the game easily at the beginning of their turn
++ Scores are maintained throughout the game
++ Turns are tracked and displayed upon game conclusion
++ The player and computer always have the same number of turns to maintain fairness
++ Input validation and error checking
+
 ### Future Features
+Possible future features might include:
++ 
 
 ## Data Model
 This project employed an Object-Oriented Programming (OOP) approach by making use of a GameBoard class for the player's board and ComputerBoard class for the computer's hidden board. 

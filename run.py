@@ -409,7 +409,7 @@ def play_game():
 
             # check for a draw after the computer's final turn
             if player_ships_remaining == 0:
-                print("\nIt's a draw! Game Over!\n")
+                print("It's a draw! Game Over!\n")
             else:
                 print(
                     f"\nThe computer couldn't sink all your ships! "

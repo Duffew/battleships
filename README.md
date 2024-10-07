@@ -10,9 +10,9 @@ This is a Python terminal game, which runs in Code Institute's mock terminal on 
 ## Game Rules
 Battleships is a turn-based guessing game where a player and the computer compete to sink each other's ships.
 
-The player chooses a board size and two boards are randomly generated. The boards are prepopulated with ships based upon the board size. The player's board shows thier ship's locations. The computer's board has their ships hidden.
+The player chooses a board size and two boards are randomly generated. The boards are prepopulated with ships based upon the board size. The player's board shows their ship's locations. The computer's board has their ships hidden.
 
-The player always plays first and chooses coordinates from the computer's board. If the coordinate houses a ship, the computer's board is marked with '!' and the computer loses one ship. If the coordinate is empty, the board is marked with 'O' to indicate a miss. The computer then plays its turn following the same marking conventions. Turns alternate until a winner is detremined or the game is drawn.
+The player always plays first and chooses coordinates from the computer's board. If the coordinate houses a ship, the computer's board is marked with '!' and the computer loses one ship. If the coordinate is empty, the board is marked with 'O' to indicate a miss. The computer then plays its turn following the same marking conventions. Turns alternate until a winner is determined or the game is drawn.
 
 The game has been designed so that even though the player always plays first, the player and computer always have the same number of turns to maintain fairness. This means that if that player sinks all the computer ships first, the computer still has a chance to draw the game.
 
@@ -25,9 +25,9 @@ Win conditions:
     - It sinks the player's last ship on its turn
 + The game is drawn if:
     - The player sinks the computer's last ship AND
-    - The compueter sinks the player's last ship on its final turn
+    - The computer sinks the player's last ship on its final turn
 
-The game can be quit early by the player on thier turn by selecting Q when prompted to choose a column.
+The game can be quit early by the player on their turn by selecting Q when prompted to choose a column.
 
 ## Features
 ### Current Features
@@ -35,8 +35,8 @@ The game can be quit early by the player on thier turn by selecting Q when promp
     - The user can choose a board size from between 4 and 8 square
     - Ships are randomly placed on the both the player's and computer's board
     - The number of ships placed is 20% of the total cells on the board
-    - The computer's ships are hiden from the player unless sunk
-    - The boards feature alphabeticised columns and numeric rows
+    - The computer's ships are hidden from the player unless sunk
+    - The boards feature alphabetised columns and numeric rows
 
     ![welcome and game setup](screenshots/feat_welcome.png)
 
@@ -64,7 +64,7 @@ The game can be quit early by the player on thier turn by selecting Q when promp
     
 ### Future Features
 Possible future features might include:
-+ Enable players to input their name for labeling the board
++ Enable players to input their name for labelling the board
 + Add colour to the game boards for hits and misses
 + Add audio for hits and misses
 + Enable players to place ships themselves
@@ -90,7 +90,7 @@ The project's features were manually tested for functionality. The screenshots b
 ![table 5](screenshots/test_table_5.png)
 ![table 6](screenshots/test_table_6.png)
 
-### Validatior Testing
+### Validator Testing
 The project's code was passed through the Code Institute Python Linter validator. The results showed no errors found.
 
 ![Python linter test results](screenshots/linter.png)
@@ -101,7 +101,7 @@ During development I identified a bug where the programme did not seem to genera
 
 ![bug 1 - the problem](screenshots/battle_bugs_1_problem.png)
 
-The problem in the code was an error in the 'for' loop for iterating ship placement. I had made reference to two [x] coordiantes rather than [x][y].
+The problem in the code was an error in the 'for' loop for iterating ship placement. I had made reference to two [x] coordinates rather than [x][y].
 
 ![bug 1 - the code problem](screenshots/battle_bugs_1_code_problem.png)
 
@@ -114,14 +114,14 @@ There are no unresolved bugs.
 
 ## Deployment
 ### GitHub for Version Control
-The project was developed using the GitPod Integrated Development Environment (IDE) and pushed to the battleships repo on GitHub. The following git commands were used to communicate between the IDE and the repo:
+The project was developed using the GitPod Integrated Development Environment (IDE) and pushed to the Battleships repo on GitHub. The following git commands were used to communicate between the IDE and the repo:
 
 + git add . - used to add updates to the staging area ready for committal to the queue
 + git commit -m "comment" - used to commit updates to the repo queue
 + git push - used to send updates in the queue to the repo on GitHub
 
 ### Heroku for Deployment
-The project was deployed Heroku using the follwoing steps:
+The project was deployed Heroku using the following steps:
 + 'Create new app' from within the Heroku dashboard
     - choose a unique app name
     - select region - Europe
@@ -132,7 +132,7 @@ The project was deployed Heroku using the follwoing steps:
         + python
         + nodejs
 + Deploy
-    - Select Gitub
+    - Select GitHub
     - Search for GitHub repo and connect
     - Choose deployment method - manual
     - Select 'view' to see the link to the deployed version
@@ -151,7 +151,7 @@ The project was deployed Heroku using the follwoing steps:
 
 ## Credits
 ### Code
-+ The idea and python code for creating the GameBoard class was derrived from the [Code Institute Battleships](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/) example.
++ The idea and python code for creating the GameBoard class was derived  from the [Code Institute Battleships](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/) example.
 ### Content
 + All content was created by the programmer
 ### Acknowledgements

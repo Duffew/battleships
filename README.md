@@ -151,7 +151,7 @@ The project was deployed Heroku using the following steps:
 
 ## Credits
 ### Code
-+ The idea and python code for creating the GameBoard class was derived  from the [Code Institute Battleships](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/) example.
++ The idea and python code for creating the GameBoard class was derived from the [Code Institute Battleships](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/) example.
 ### Content
 + All content was created by the programmer
 ### Acknowledgements

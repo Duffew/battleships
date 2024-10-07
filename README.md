@@ -1,5 +1,7 @@
 # Battleships
 
+## Game Rules
+
 ## Features
 ### Current Features
 + User defined board size

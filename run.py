@@ -42,7 +42,7 @@ class GameBoard:
         self.size = size
 
         # the GameBoard board is a list of x, y coordinates
-        #  with a range of sizes
+        # with a range of sizes
         self.board = [["." for x in range(size)] for y in range(size)]
 
         # the GameBoard has a total number of cells
@@ -56,7 +56,7 @@ class GameBoard:
 
     def place_random_ships(self):
         """
-        place ships randomly on the board
+        Place ships randomly on the board
         """
         # create a list of all possible coordinates
         all_coordinates = [
@@ -91,7 +91,7 @@ class GameBoard:
 class ComputerBoard(GameBoard):
     def __init__(self, size):
         """
-        initialise the ComputerBoard class
+        Initialise the ComputerBoard class
         """
         # inherit attributes from GameBoard class
         super().__init__(size)
@@ -101,7 +101,7 @@ class ComputerBoard(GameBoard):
 
     def print_hidden_board(self):
         """
-        print the computer's board with the ships hidden to the player
+        Print the computer's board with the ships hidden to the player
         """
         print("\nHere is the computer's board.\n")
         print("  " + " ".join([chr(65 + i) for i in range(self.size)]))
@@ -121,7 +121,7 @@ class ComputerBoard(GameBoard):
 
 def what_size():
     """
-    generate a game board based upon the player's choice of board size
+    Generate a game board based upon the player's choice of board size
     """
     while True:
         # use try and except to catch non-numeric and out of range inputs
@@ -152,7 +152,7 @@ def what_size():
 
 def game_setup():
     """
-    set up the player's and computer's board
+    Set up the player's and computer's board
     based upon player's chosen board size
     """
     board_size = what_size()
@@ -177,7 +177,7 @@ def game_setup():
 
 def player_guess_column(board_size):
     """
-    user inputs a column guess - makes use of the returned board_size value
+    User inputs a column guess - makes use of the returned board_size value
     """
     # store the column headings based upon board size
     col_headings = [chr(65 + i) for i in range(board_size)]
@@ -202,7 +202,7 @@ def player_guess_column(board_size):
 # takes (makes use of) data stored in the board_size and column_guess variables
 def player_guess_row(board_size, column_guess):
     """
-    user inputs a row guess
+    User inputs a row guess
 
     """
     while True:
@@ -229,7 +229,7 @@ def player_guess_row(board_size, column_guess):
 
 def player_turn(computer_board, board_size):
     """
-    manage the user's turn once a guess has been made
+    Manage the user's turn once a guess has been made
     """
 
     # instruct python to use global variables

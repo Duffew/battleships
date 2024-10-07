@@ -1,7 +1,7 @@
 # Battleships
 Welcome to Battleships!
 
-This is a Python terminal game, which runs in Code Institutes mock terminal on the Heroku platform.
+This is a Python terminal game, which runs in Code Institute's mock terminal on the Heroku platform.
 
 [Click here to play!](https://battleships-duffew-364e826d24f8.herokuapp.com/)
 
@@ -150,4 +150,9 @@ The project was deployed Heroku using the follwoing steps:
 + Node.js for User Interface within Heroku
 
 ## Credits
-
+### Code
++ The idea and python code for creating the GameBoard class was derrived from the [Code Institute Battleships](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/) example.
+### Content
++ All content was created by the programmer
+### Acknowledgements
++ My mentor Spencer Bariball for yet more great advice!

@@ -32,6 +32,7 @@ def welcome():
 
 
 # create a class for the game board
+# acknowledge Code Institute tutor for idea and initail code
 class GameBoard:
     def __init__(self, size):
         """

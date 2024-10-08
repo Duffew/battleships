@@ -414,7 +414,8 @@ def play_game():
             else:
                 print(
                     f"\nThe computer couldn't sink all your ships! "
-                    f"You won the game in {player_turns} turns! Game Over!\n"
+                    f"You won the game in {player_turns} turns!"
+                    f"\nGame Over!\n"
                 )
             break
 
